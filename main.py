@@ -1,5 +1,4 @@
 todosList = []
-
 while True:
     user_action = input("Type add, show/display, edit  or exit: ").strip()
     match user_action:
