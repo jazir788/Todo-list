@@ -18,6 +18,5 @@ while True:
                 print(item)
         case 'exit':
             break
-
         case _:
             print('You entered an unknown command')
