@@ -28,9 +28,8 @@ while True:
             #todosList.__setitem__(number, editedItem)
             #print(todosList)
         case 'complete':
-            #print(todosList)
-          #  number = int(input("Enter the todo item that is complete: "))
-           # todosList.pop(number - 1)
+            #number = int(input("Enter the todo item that is complete: "))
+            #todosList.pop(number - 1)
             #print(todosList)
         case 'exit':
             break
