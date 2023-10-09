@@ -18,7 +18,11 @@ while True:
             todos = file.readlines()
             file.close()
 
+            # list comprehension
+           # new_todos = [item.strip('\n') for item in todos]
+
             for index, item in enumerate(todos):
+                item = item.strip('\n')
                 row = f"{index + 1}-{item}"
                 print(row)
         case 'edit':
@@ -28,6 +32,7 @@ while True:
             #todosList.__setitem__(number, editedItem)
             #print(todosList)
         case 'complete':
+            print('complete')
             #number = int(input("Enter the todo item that is complete: "))
             #todosList.pop(number - 1)
             #print(todosList)
