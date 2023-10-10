@@ -1,22 +1,21 @@
 while True:
     user_action = input("Type add, show/display, edit, complete  or exit: ").strip()
+
     match user_action:
         case 'add':
             todo = input("Enter a todo: ") + "\n"
 
-            file = open('todo.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            with open('todo.txt', 'r') as file:
+                todos = file.readlines()
 
             todos.append(todo)
 
-            file = open('todo.txt', 'w')
-            file.writelines(todos)
-            file.close()
+            with open('todo.txt', 'w') as file:
+                file.writelines(todos)
+
         case 'show' | 'display':
-            file = open('todo.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            with open('todo.txt', 'r') as file:
+                todos = file.readlines()
 
             # list comprehension
            # new_todos = [item.strip('\n') for item in todos]
@@ -27,15 +26,31 @@ while True:
                 print(row)
         case 'edit':
             number = int(input('Number of the todo to edit: '))
-            editedItem = input('What is the new todo item')
-            number = number-1
-            #todosList.__setitem__(number, editedItem)
-            #print(todosList)
+            number -= 1
+
+            with open('todo.txt', 'r') as file:
+                todos = file.readlines()
+
+            editedItem = input('What is the new todo item: ')
+            todos[number] = editedItem + '\n'
+
+            with open('todo.txt', 'w') as file:
+                todos = file.writelines(todos)
+
         case 'complete':
-            print('complete')
-            #number = int(input("Enter the todo item that is complete: "))
-            #todosList.pop(number - 1)
-            #print(todosList)
+            number = int(input("Enter the todo item that is complete: "))
+
+            with open('todo.txt', 'r') as file:
+                todos = file.readlines()
+            index = number - 1
+            todo_to_remove = todos[index].strip('\n')
+            todos.pop(index)
+
+            with open('todo.txt', 'w') as file:
+                todos = file.writelines(todos)
+
+            message = f"Todo: {todo_to_remove} was removed from the list"
+            print(message)
         case 'exit':
             break
         case _:
