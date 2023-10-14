@@ -1,19 +1,26 @@
+def get_todos():
+    with open('todo.txt', 'r') as file_local:
+        todos_local = file_local.readlines()
+    return todos_local
+
+
+
 while True:
     user_action= input("Type add, show/display, edit, complete  or exit: ").strip()
 
     if user_action.startswith('add'):
         todo = user_action[4:]
 
-        with open('todo.txt', 'r') as file:
-            todos = file.readlines()
-
-        todos.append(todo + '\n')
+        todos=get_todos()
 
         with open('todo.txt', 'w') as file:
             file.writelines(todos)
+
+        todos.append(todo + '\n')
+
+
     elif user_action.startswith('show'):
-        with open('todo.txt', 'r') as file:
-            todos = file.readlines()
+        get_todos()
 
         # list comprehension
        # new_todos = [item.strip('\n') for item in todos]
@@ -27,14 +34,13 @@ while True:
             number = int(user_action[5:])
             number -= 1
 
-            with open('todo.txt', 'r') as file:
-                todos = file.readlines()
+            get_todos()
 
             editedItem = input('What is the new todo item: ')
             todos[number] = editedItem + '\n'
 
             with open('todo.txt', 'w') as file:
-                todos = file.writelines(todos)
+                file.writelines(todos)
         except ValueError:
             print("Your command is not valid")
             continue
@@ -42,14 +48,13 @@ while True:
         try:
             number = int(user_action[9:])
 
-            with open('todo.txt', 'r') as file:
-                todos = file.readlines()
+            get_todos()
             index = number - 1
             todo_to_remove = todos[index].strip('\n')
             todos.pop(index)
 
             with open('todo.txt', 'w') as file:
-                todos = file.writelines(todos)
+                file.writelines(todos)
 
             message = f"Todo: {todo_to_remove} was removed from the list"
             print(message)
