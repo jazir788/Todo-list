@@ -1,0 +1,11 @@
+[{"questions": "What are dolphins?",
+  "alternatives": ["Amphibians", "fish", "mammals", "Birds"],
+  "correct_answer": 3},
+ {"questions": "What occupies most of the earth's surface?",
+  "alternatives": ["Land", "Water"],
+  "correct_answer": 2},
+ {"questions": "What does HTML stand for?",
+  "alternatives": ["Hyper Text Markup Language", "Hyper Text Modern Language", "Hidden Text Marked Language"],
+  "correct_answer": 1}
+]
+
