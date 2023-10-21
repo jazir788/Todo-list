@@ -1,15 +1,30 @@
 import PySimpleGUI as sg
 
-label1 = sg.Text("Enter feet:")
-input1 = sg.Input()
+def convert(feet, inches):
+    meters = feet * 0.3048 + inches * 0.0254
+    return meters
 
-label2 = sg.Text("Enter Inches")
-input2 = sg.Input()
+feet_label = sg.Text("Enter feet: ")
+feet_input = sg.Input(key="feet")
 
-convert_button = sg.Button("Convert")
-window = sg.Window("Converter", layout=[[label1, input1],
-                                              [label2, input2],
-                                              [convert_button]])
+inches_label = sg.Text("Enter inches: ")
+inches_input = sg.Input(key="inches")
 
-window.read()
+button = sg.Button("Convert")
+output_label = sg.Text("", key="output")
+
+window = sg.Window("Convertor",
+                   layout=[[feet_label, feet_input],
+                           [inches_label, inches_input],
+                           [button, output_label]])
+
+while True:
+    event, values = window.read()
+    feet = float(values["feet"])
+    inches = float(values["inches"])
+
+    result = convert(feet, inches)
+    window["output"].update(value=f"{result} m", text_color="white")
+
+
 window.close()
