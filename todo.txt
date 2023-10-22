@@ -1,4 +1,3 @@
 add a monitor
-Write a paper
-make a coffeelist an item
-create a dashboard
+complete a lecture
+('write notes\n',){write notes for lectures}
